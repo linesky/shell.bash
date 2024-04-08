@@ -1,2 +1,4 @@
-# Nasm.64
-X86_64 programing nasm assembly
+# shell.bash
+
+
+run a shell inside a shell 
