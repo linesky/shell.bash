@@ -3,12 +3,13 @@ import numpy as np
 from time import gmtime, strftime
 import math
 import time
+import datetime
 global secss
 global xx
 global yy
 global xxx
 global yyy
-secss=None
+secss=-1
 xx=600
 yy=58
 xxx=-5
@@ -21,11 +22,15 @@ def draw_grid(frame, grid_size):
     global xxx
     global yyy
     text="Virtual Reality Scroll...."
-    current_time = time.localtime()
-    l=-(len(text)*8)
-    seconds = current_time.tm_sec
-    if seconds != secss:
-        secss=seconds
+    dt = datetime.datetime.now()
+    mseconds=dt.microsecond / 1000
+    if secss==-1:
+        secss=mseconds
+    mm=abs(mseconds-secss)
+    l=-(len(text)*12)
+    
+    if mm > 50:
+        secss=mseconds
         xx=xx+xxx
         
         if xx< l:
