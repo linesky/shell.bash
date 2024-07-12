@@ -2,13 +2,14 @@ import cv2
 import numpy as np
 from time import gmtime, strftime
 import math
+import datetime
 import time
 global secss
 global xx
 global yy
 global xxx
 global yyy
-secss=None
+secss=-1
 xx=15
 yy=15
 xxx=5
@@ -20,11 +21,14 @@ def draw_grid(frame, grid_size):
     global yy
     global xxx
     global yyy
-    current_time = time.localtime()
+    dt = datetime.datetime.now()
+    mseconds=dt.microsecond / 1000
+    if secss==-1:
+        secss=mseconds
+    mm=abs(mseconds-secss)
     
-    seconds = current_time.tm_sec
-    if seconds != secss:
-        secss=seconds
+    if mm > 50:
+        secss=mseconds
         xx=xx+xxx
         yy=yy+yyy
         if xx> 610:
